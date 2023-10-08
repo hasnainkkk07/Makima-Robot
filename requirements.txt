@@ -37,7 +37,7 @@ PyDictionary
 pytz
 pymongo
 python-arq
-pyrate-limiter
+pyrate-limiter==2.8.1
 pykeyboard
 pynewtonmath
 pyrogram==2.0.51
