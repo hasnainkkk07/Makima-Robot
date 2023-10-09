@@ -61,6 +61,7 @@ class Config(object):
     SPAMMERS = None
     ALLOW_CHATS = True
     PM_START_IMG = ""
+    START_IMG = ""
     HEROKU_API_KEY = None
     HEROKU_APP_NAME = None
     TEMP_DOWNLOAD_DIRECTORY = "./"
