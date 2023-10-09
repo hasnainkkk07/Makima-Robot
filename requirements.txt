@@ -37,11 +37,11 @@ PyDictionary
 pytz
 pymongo
 python-arq
-pyrate-limiter==2.8.1
+pyrate-limiter==2.10.0
 pykeyboard
 pynewtonmath
-pyrogram==2.0.51
-python-telegram-bot==12.8
+pyrogram==2.0.106
+python-telegram-bot==13.15
 regex
 requests
 secureme
@@ -51,7 +51,7 @@ spongemock
 sqlalchemy==1.4.47
 telegram
 telegraph
-telethon==1.25.0
+telethon==1.28.5
 TgCrypto
 ujson
 wget
