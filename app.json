@@ -151,7 +151,7 @@
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
          "value": "True"
       },
-      "START_IMG": {
+      "PM_START_IMG": {
       "description": "Telegraph link of the image which will be shown at start command.",
          "required": true,
          "value": ""
