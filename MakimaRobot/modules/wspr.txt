@@ -4,7 +4,7 @@ import logging
 from telethon import Button, events
 from telethon.tl.functions.users import GetFullUserRequest as us
 
-from Makima import telethn as bot
+from MakimaRobot import tbot as bot
 
 logging.basicConfig(level=logging.INFO)
 
