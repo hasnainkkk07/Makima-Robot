@@ -62,7 +62,8 @@ if ENV:
         raise Exception("Your tiger users list does not contain valid integers.")
 
     INFOPIC = bool(os.environ.get("INFOPIC", "True"))
-    PM_START_IMG = os.environ.get("START_IMG", None)
+    PM_START_IMG = os.environ.get("PM_START_IMG", None)
+    START_IMG = os.environ.get("START_IMG", None)
     EVENT_LOGS = os.environ.get("EVENT_LOGS", None)
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     URL = os.environ.get("URL", "")  # Does not contain token
@@ -140,7 +141,8 @@ else:
     API_HASH = Config.API_HASH
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
     MONGO_DB_URI = Config.MONGO_DB_URI
-    PM_START_IMG = Config.START_IMG
+    PM_START_IMG = Config.PM_START_IMG
+    START_IMG = Config.START_IMG
     HEROKU_API_KEY = Config.HEROKU_API_KEY
     HEROKU_APP_NAME = Config.HEROKU_APP_NAME
     TEMP_DOWNLOAD_DIRECTORY = Config.TEMP_DOWNLOAD_DIRECTORY
