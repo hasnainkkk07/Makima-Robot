@@ -30,7 +30,7 @@ from telegram.utils.helpers import escape_markdown
 from telethon import __version__ as tlhver
 
 
-from MakimaRobot import (
+from DazaiRobot import (
     BOT_NAME,
     BOT_USERNAME,
     LOGGER,
@@ -39,8 +39,6 @@ from MakimaRobot import (
     PM_START_IMG,
     SUPPORT_CHAT,
     TOKEN,
-    WEBHOOK,
-    CERT_PATH,
     StartTime,
     dispatcher,
     pbot,
@@ -76,47 +74,49 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
     
+PM_START_TEX = """
+ʜᴇʟʟᴏ `{}`, ᴡᴀɪᴛ ᴀ ᴍᴏᴍᴇɴᴛ ʙʀᴏ . . . 
+"""
 
 
 PM_START_TEXT = """ 
-Konichiwa, Shinobi[!](https://te.legra.ph/file/2fe31d662b8ab1ae39078.jpg)
-This is your Itachi Uchiha Bot.
-🌌Control your group effortlessly.Type /help to unveil your jutsu.
-Let's bring order to your village!
+*ᴋᴏɴɴɪᴄʜɪᴡᴀ* {}, [💌]({})
+*ᴛʜɪs ɪs* ᴅᴀ𝓩ᴀɪ 
+✦⋆⋇────────────────⋇⋆✦
+⦿ ɪ'ᴍ ᴀ ᴩᴏᴡᴇʀғᴜʟ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴩ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ ʙᴀsᴇᴅ ᴏɴ ʙᴜɴɢᴏ sᴛʀᴀʏ ᴅᴏɢs ᴀɴɪᴍᴇ[.](https://te.legra.ph/file/625f9ebeb21d04427adc6.jpg)
+
+✦⋆⋇────────────────⋇⋆✦
+⦿ *ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ.*
 """
 buttons = [
     [
         InlineKeyboardButton(
-            text=f"⚜️ Add Itachi To Your Group ⚜️",
-            url=f"https://telegram.dog/{BOT_USERNAME}?startgroup=true",
-        )
-    ],
-    [
-        InlineKeyboardButton(text="⛩️ Help ⛩️", callback_data="help_back"),
-        InlineKeyboardButton(
-            text="🛡 ️ Network 🛡️", url="https://telegram.dog/Akatsukixnetworks"
+            text="⚓ sᴜᴍᴍᴏɴ ᴍᴇ ⚓",
+            url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
         ),
     ],
     [
-        InlineKeyboardButton(
-            text="🚑 Support", url=f"https://telegram.dog/botsupportx"
-        ),
-        InlineKeyboardButton(text="📢 Update", url="https://telegram.dog/botupdatex"),
+        InlineKeyboardButton(text="🫧 ᴅᴇᴠ 🫧", url=f"tg://user?id={OWNER_ID}"),
+        InlineKeyboardButton(text="♻️ sᴜᴩᴩᴏʀᴛ ♻️", url=f"https://t.me/{SUPPORT_CHAT}"),
     ],
-  ]
-
+    [
+        InlineKeyboardButton(text="🍁 ʜᴇʟᴩ & ᴄᴏᴍᴍᴀɴᴅs 🍁", callback_data="help_back"),
+    ],
+    
+]
 
 HELP_STRINGS = f"""
- Main commands available: 
- 
- ➛ /help: PM's you this message. [ ](https://te.legra.ph/file/42ea87c715d0863578e93.jpg)
- ➛ /help <module name>: PM's you info about that module.
- ➛ /settings:
-   ❂ in PM: will send you your settings for all supported modules.
-   ❂ in a group: will redirect you to pm, with all that chat's settings.
+     [{BOT_NAME}](https://telegra.ph/file/14191d1c1439b3b04583b.jpg)
+✦━━━━━━━━━━━━━━━━━━━━✦
+➼ *ᴄʟɪᴄᴋ ᴏɴ ᴀ sᴘᴇᴄɪғɪᴄ ᴍᴏᴅᴜʟᴇ ᴛᴏ ɢᴇᴛ ɪᴛ's ɢᴜɪᴅᴇʟɪɴᴇs*.
+✦━━━━━━━━━━━━━━━━━━━━✦
 """
 
-DONATE_STRING = """ I am free for everyone """
+DONATE_STRING = """ʜᴇʏ ʙᴀʙʏ,
+  ʜᴀᴩᴩʏ ᴛᴏ ʜᴇᴀʀ ᴛʜᴀᴛ ʏᴏᴜ ᴡᴀɴɴᴀ ᴅᴏɴᴀᴛᴇ.
+
+ʏᴏᴜ ᴄᴀɴ ᴅɪʀᴇᴄᴛʟʏ ᴄᴏɴᴛᴀᴄᴛ ᴍʏ [ᴅᴇᴠᴇʟᴏᴩᴇʀ](f"tg://user?id={OWNER_ID}") ғᴏʀ ᴅᴏɴᴀᴛɪɴɢ ᴏʀ ʏᴏᴜ ᴄᴀɴ ᴠɪsɪᴛ ᴍʏ [sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ](f"https://t.me/{SUPPORT_CHAT}") ᴀɴᴅ ᴀsᴋ ᴛʜᴇʀᴇ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪᴏɴ."""
+
 IMPORTED = {}
 MIGRATEABLE = []
 HELPABLE = {}
@@ -219,7 +219,27 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            first_name = update.effective_user.first_name  
+            first_name = update.effective_user.first_name
+            
+            usr = update.effective_user
+            lol = update.effective_message.reply_text(
+                PM_START_TEX.format(usr.first_name), parse_mode=ParseMode.MARKDOWN
+            )
+            
+            time.sleep(0.1)
+            lol.edit_text("💥")
+            time.sleep(0.4)
+            lol.edit_text("⚡")
+            time.sleep(0.4)
+            lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ.")
+            time.sleep(0.2)
+            lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ..")
+            time.sleep(0.2)
+            lol.edit_text("ꜱᴛᴀʀᴛɪɴɢ...")
+            time.sleep(0.2)
+            lol.delete()
+            
+            
             update.effective_message.reply_text(
                 PM_START_TEXT.format(escape_markdown(first_name), (PM_START_IMG), BOT_NAME),
                 reply_markup=InlineKeyboardMarkup(buttons),
@@ -227,8 +247,9 @@ def start(update: Update, context: CallbackContext):
                 timeout=60,
             )
     else:
-        update.effective_message.reply_photo("https://te.legra.ph/file/4c91a16896ab1c0d7f589.jpg",
-            caption="ɪ ᴀᴍ ɪᴛᴀᴄʜɪ ᴜᴄʜɪʜᴀ\nᴛʜᴇ sᴛʀᴏɴɢᴇꜱᴛ ᴜᴄʜɪʜᴀ ᴇᴠᴇʀ ᴇxɪsᴛ\nᴀʟɪᴠᴇ ꜱɪɴᴄᴇ</b> <code>{}</code>".format(
+        update.effective_message.reply_photo(
+            START_IMG,
+            caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ!\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ:</b> <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
@@ -307,7 +328,7 @@ def help_button(update, context):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                " 「 Available  Module:  *{}* :\n".format(
+                "➥ 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝗳𝗼𝗿 *{}* :\n".format(
                     HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
@@ -317,7 +338,7 @@ def help_button(update, context):
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
+                    [[InlineKeyboardButton(text="❌", callback_data="help_back")]]
                 ),
             )
 
@@ -359,6 +380,7 @@ def help_button(update, context):
 
 
 
+
 @run_async
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -374,7 +396,7 @@ def get_help(update: Update, context: CallbackContext):
                     [
                         [
                             InlineKeyboardButton(
-                                text="Help",
+                                text="ʜᴇʟᴘ",
                                 url="t.me/{}?start=ghelp_{}".format(
                                     context.bot.username, module
                                 ),
@@ -645,11 +667,9 @@ def main():
         try:
             dispatcher.bot.sendAnimation(
                 f"@{SUPPORT_CHAT}",
-                animation="https://te.legra.ph/file/4ed80888cbeaf7eb52960.mp4",
+                animation="https://te.legra.ph/file/0479c847b0bc301f663c1.mp4",
                 caption=f"""
-ㅤ{BOT_NAME} ɪ ᴀᴍ ʙᴀᴄᴋ ᴛᴏ ᴡᴏʀᴋ!
-
-ɪᴛ ɪꜱ ꜰᴏᴏʟɪꜱʜ ᴛᴏ ꜰᴇᴀʀ ᴡʜᴀᴛ ᴡᴇ ʜᴀᴠᴇ ʏᴇᴛ ᴛᴏ ꜱᴇᴇ ᴀɴᴅ ᴋɴᴏᴡ.
+ㅤ{BOT_NAME} ɪs ʙᴀᴄᴋ ᴛᴏ ᴡᴏʀᴋ!
 """,
                 parse_mode=ParseMode.MARKDOWN,
             )
@@ -684,17 +704,9 @@ def main():
     dispatcher.add_handler(donate_handler)
 
     dispatcher.add_error_handler(error_callback)
-    if WEBHOOK:
-        LOGGER.info("Using webhooks.")
-        updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
-
-        if CERT_PATH:
-            updater.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
-        else:
-            updater.bot.set_webhook(url=URL + TOKEN)
 
     LOGGER.info("Using long polling")
-    updater.start_polling(timeout=15, read_latency=4, clean=True)
+    updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
