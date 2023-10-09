@@ -30,7 +30,7 @@ from telegram.utils.helpers import escape_markdown
 from telethon import __version__ as tlhver
 
 
-from DazaiRobot import (
+from MakimaRobot import (
     BOT_NAME,
     BOT_USERNAME,
     LOGGER,
@@ -45,9 +45,9 @@ from DazaiRobot import (
     telethn,
     updater,
 )
-from DazaiRobot.modules import ALL_MODULES
-from DazaiRobot.modules.helper_funcs.chat_status import is_user_admin
-from DazaiRobot.modules.helper_funcs.misc import paginate_modules
+from MakimaRobot.modules import ALL_MODULES
+from MakimaRobot.modules.helper_funcs.chat_status import is_user_admin
+from MakimaRobot.modules.helper_funcs.misc import paginate_modules
 
 
 def get_readable_time(seconds: int) -> str:
@@ -126,7 +126,7 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("DazaiRobot.modules." + module_name)
+    imported_module = importlib.import_module("MakimaiRobot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -356,46 +356,6 @@ def help_button(update, context):
         pass
 
 
-@run_async
-def dazai_about_callback(update: Update, context: CallbackContext):
-    query = update.callback_query
-    if query.data == "dazai_":
-        uptime = get_readable_time((time.time() - StartTime))
-        query.message.edit_text(
-            text=f"*ʜᴇʏ,*\n  *ᴛʜɪs ɪs {dispatcher.bot.first_name}*"
-            "\n\n𝗔 𝗽𝗼𝘄𝗲𝗿𝗳𝘂𝗹 𝗴𝗿𝗼𝘂𝗽 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 𝗯𝗼𝘁 𝗯𝘂𝗶𝗹𝘁 𝘁𝗼 𝗵𝗲𝗹𝗽 𝘆𝗼𝘂 𝗺𝗮𝗻𝗮𝗴𝗲 𝘆𝗼𝘂𝗿 𝗴𝗿𝗼𝘂𝗽𝘀 𝗮𝗻𝗱 𝗸𝗲𝗲𝗽 𝗶𝘁 𝘀𝗮𝗳𝗲 𝗳𝗿𝗼𝗺 𝘀𝗽𝗮𝗺𝗺𝗲𝗿𝘀."
-            "\n𝗪𝗿𝗶𝘁𝘁𝗲𝗻 𝗶𝗻 𝗽𝘆𝘁𝗵𝗼𝗻 𝘄𝗶𝘁𝗵 𝗦𝗤𝗟 𝗮𝗹𝗰𝗵𝗲𝗺𝘆, 𝗥𝗲𝗱𝗶𝘀 𝗮𝗻𝗱 𝗠𝗼𝗻𝗴𝗼𝗗𝗕 𝗮𝘀 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲."
-            "\n➥  ɪ ᴄᴀɴ ʀᴇꜱᴛʀɪᴄᴛ ᴜꜱᴇʀꜱ."
-            "\n➥  ɪ ʜᴀᴠᴇ ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀɴᴛɪ-ꜰʟᴏᴏᴅ ꜱʏꜱᴛᴇᴍ."
-            "\n➥  ɪ ᴄᴀɴ ɢʀᴇᴇᴛ ᴜꜱᴇʀꜱ ᴡɪᴛʜ ᴄᴜꜱᴛᴏᴍɪᴢᴀʙʟᴇ ᴡᴇʟᴄᴏᴍᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ᴀɴᴅ ᴇᴠᴇɴ ꜱᴇᴛ ᴀ ɢʀᴏᴜᴘ'ꜱ ʀᴜʟᴇꜱ.",
-            parse_mode=ParseMode.MARKDOWN,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="Oᴡɴᴇʀ", url=f"tg://user?id={OWNER_ID}"
-                        ),
-                        InlineKeyboardButton(
-                            text="Uᴘᴅᴀᴛᴇꜱ", 
-                            url="https://t.me/yamada_updates",
-                        ),
-                    ],
-                    [
-                        InlineKeyboardButton(text="BACK", callback_data="dazai_back"),
-                    ],
-                ]
-            ),
-        )
-    elif query.data == "dazai_back":
-        first_name = update.effective_user.first_name 
-        query.message.edit_text(
-            PM_START_TEXT.format(escape_markdown(first_name), (PM_START_IMG), BOT_NAME),
-            reply_markup=InlineKeyboardMarkup(buttons),
-            parse_mode=ParseMode.MARKDOWN,
-            timeout=60,
-            disable_web_page_preview=False,
-        )
 
 @run_async
 def get_help(update: Update, context: CallbackContext):
