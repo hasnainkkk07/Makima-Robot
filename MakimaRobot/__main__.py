@@ -39,6 +39,8 @@ from MakimaRobot import (
     PM_START_IMG,
     SUPPORT_CHAT,
     TOKEN,
+    WEBHOOK,
+    CERT_PATH,
     StartTime,
     dispatcher,
     pbot,
@@ -682,6 +684,14 @@ def main():
     dispatcher.add_handler(donate_handler)
 
     dispatcher.add_error_handler(error_callback)
+    if WEBHOOK:
+        LOGGER.info("Using webhooks.")
+        updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
+
+        if CERT_PATH:
+            updater.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
+        else:
+            updater.bot.set_webhook(url=URL + TOKEN)
 
     LOGGER.info("Using long polling")
     updater.start_polling(timeout=15, read_latency=4, clean=True)
