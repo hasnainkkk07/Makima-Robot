@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 db = {}
 
 
-@bot.on(events.NewMessage(pattern="^[!?@/]Makima_UltraProxbot$"))
+@bot.on(events.NewMessage(pattern="^[!?@/]missrose_probot"))
 async def stsrt(event):
     await event.reply(
         "**Heya, I am a Whisper Bot function for Cutiepii!**",
