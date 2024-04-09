@@ -548,7 +548,7 @@ def settings_button(update: Update, context: CallbackContext):
             )
 
         elif prev_match:
-             chat_id = prev_match.group(1)
+            chat_id = prev_match.group(1)
             curr_page = int(prev_match.group(2))
             chat = bot.get_chat(chat_id)
             query.message.reply_text(
